@@ -1,0 +1,90 @@
+{
+  "test_phrases": {
+    "chinese": [
+      {
+        "text": "你好嗎",
+        "pinyin": "nǐ hǎo ma",
+        "translation": "How are you?",
+        "difficulty": "beginner"
+      },
+      {
+        "text": "我想要一杯咖啡",
+        "pinyin": "wǒ xiǎng yào yī bēi kā fēi",
+        "translation": "I would like a cup of coffee",
+        "difficulty": "intermediate"
+      },
+      {
+        "text": "明天見",
+        "pinyin": "míng tiān jiàn",
+        "translation": "See you tomorrow",
+        "difficulty": "beginner"
+      },
+      {
+        "text": "請問洗手間在哪裡",
+        "pinyin": "qǐng wèn xǐ shǒu jiān zài nǎ lǐ",
+        "translation": "Where is the bathroom?",
+        "difficulty": "intermediate"
+      }
+    ],
+    "english": [
+      {
+        "text": "The weather is nice today",
+        "ipa": "/ðə ˈwɛðər ɪz naɪs təˈdeɪ/",
+        "difficulty": "beginner"
+      },
+      {
+        "text": "I need to schedule a meeting",
+        "ipa": "/aɪ niːd tuː ˈskɛdʒuːl ə ˈmiːtɪŋ/",
+        "difficulty": "intermediate"
+      },
+      {
+        "text": "The quarterly financial report",
+        "ipa": "/ðə ˈkwɔːrtərli faɪˈnænʃəl rɪˈpɔːrt/",
+        "difficulty": "advanced"
+      }
+    ],
+    "japanese": [
+      {
+        "text": "こんにちは",
+        "romaji": "konnichiwa",
+        "translation": "Hello",
+        "difficulty": "beginner"
+      },
+      {
+        "text": "ありがとうございます",
+        "romaji": "arigatou gozaimasu",
+        "translation": "Thank you",
+        "difficulty": "beginner"
+      }
+    ]
+  },
+  "common_errors": {
+    "chinese_tones": [
+      "3rd tone + 3rd tone (你好)",
+      "2nd tone + 4th tone combinations",
+      "Neutral tone after different tones"
+    ],
+    "japanese_rl": [
+      "rice vs lice",
+      "right vs light",
+      "pray vs play"
+    ],
+    "english_th": [
+      "think vs sink",
+      "three vs tree",
+      "this vs dis"
+    ]
+  },
+  "test_scenarios": {
+    "business": [
+      "Presenting quarterly results",
+      "Scheduling meetings",
+      "Customer service calls"
+    ],
+    "daily": [
+      "Ordering food",
+      "Asking directions",
+      "Making appointments"
+    ]
+  }
+}
