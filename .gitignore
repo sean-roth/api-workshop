@@ -1,0 +1,41 @@
+# Configuration with API keys
+config.js
+
+# Test results and recordings
+results/
+audio/recordings/
+*.wav
+*.webm
+*.mp3
+
+# Session data
+sessions/
+*.session.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Node modules (if you add any tools later)
+node_modules/
+package-lock.json
+
+# Environment files
+.env
+.env.local
+
+# Log files
+*.log
+error.log
+access.log

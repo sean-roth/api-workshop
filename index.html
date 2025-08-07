@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronunciation API Testing Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <h1>🔬 Pronunciation API Lab</h1>
+            <div id="status-bar">
+                <span id="connection-status">Checking connections...</span>
+                <span id="cost-tracker">Session cost: $0.000</span>
+            </div>
+        </header>
+
+        <!-- Control Panel -->
+        <div id="control-panel">
+            <div class="input-section">
+                <textarea id="test-phrase" placeholder="Enter text to test (e.g., 你好嗎)">你好嗎</textarea>
+                <select id="language-select">
+                    <option value="zh-TW">Chinese (Traditional)</option>
+                    <option value="zh-CN">Chinese (Simplified)</option>
+                    <option value="en-US">English (US)</option>
+                    <option value="ja-JP">Japanese</option>
+                    <option value="ko-KR">Korean</option>
+                </select>
+            </div>
+            
+            <div class="button-group">
+                <button id="record-btn" onclick="toggleRecording()">
+                    <span class="icon">🎤</span> Record
+                </button>
+                <button onclick="document.getElementById('file-upload').click()">
+                    <span class="icon">📁</span> Upload
+                </button>
+                <button id="test-all-btn" onclick="testAllAPIs()" disabled>
+                    <span class="icon">⚡</span> Test All
+                </button>
+                <button onclick="saveSession()">
+                    <span class="icon">💾</span> Save
+                </button>
+                <button onclick="clearResults()">
+                    <span class="icon">🗑️</span> Clear
+                </button>
+            </div>
+            
+            <input type="file" id="file-upload" accept="audio/*" style="display: none;" onchange="handleFileUpload(event)">
+            
+            <!-- Audio Playback -->
+            <div id="audio-controls" style="display: none;">
+                <audio id="audio-player" controls></audio>
+                <span id="audio-info"></span>
+            </div>
+            
+            <!-- Quick Phrases -->
+            <div id="quick-phrases">
+                <label>Quick tests:</label>
+                <div id="phrase-buttons"></div>
+            </div>
+        </div>
+
+        <!-- API Results Grid -->
+        <div id="api-grid">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- Terminal -->
+        <div id="terminal-section">
+            <div class="terminal-header">
+                <span>Terminal Output</span>
+                <button onclick="clearTerminal()">Clear</button>
+            </div>
+            <div id="terminal"></div>
+        </div>
+
+        <!-- JSON Viewer -->
+        <div id="json-section">
+            <div class="json-header">
+                <span>Raw JSON Response</span>
+                <button onclick="copyJSON()">Copy</button>
+            </div>
+            <pre id="json-viewer">No data yet...</pre>
+        </div>
+    </div>
+
+    <!-- Load scripts -->
+    <script src="config.js"></script>
+    <script src="utils/audio.js"></script>
+    <script src="lab.js"></script>
+    <script src="apis/_template.js"></script>
+    <script src="apis/azure.js"></script>
+    <script src="apis/speechsuper.js"></script>
+    
+    <script>
+        // Initialize the lab when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            window.lab = new PronunciationLab();
+            
+            // Register available APIs
+            if (config.AZURE_KEY && config.AZURE_KEY !== 'your-azure-key-here') {
+                lab.registerAPI('azure', new AzureAdapter(config));
+            }
+            if (config.SPEECHSUPER_KEY && config.SPEECHSUPER_KEY !== 'your-speechsuper-key') {
+                lab.registerAPI('speechsuper', new SpeechSuperAdapter(config));
+            }
+            
+            // Load quick phrases
+            loadQuickPhrases();
+            
+            // Test connections
+            testConnections();
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space' && e.target.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    toggleRecording();
+                }
+                if (e.code === 'Enter' && e.ctrlKey) {
+                    testAllAPIs();
+                }
+                if (e.code === 'KeyS' && e.ctrlKey) {
+                    e.preventDefault();
+                    saveSession();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
